@@ -14,7 +14,7 @@ with open('app/Readme.md', 'r') as f:
         packages=find_packages(where='app'),
         long_description=l_desc,
         long_description_content_type='text/markdown',
-        url="",
+        url="https://github.com/daniilgrydin/bojan.git",
         author_email="",
         license="MIT",
         classifiers=[
