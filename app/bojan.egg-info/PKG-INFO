@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: bojan
 Version: 0.0.3
 Summary: A simple logging library
-Home-page: 
+Home-page: https://github.com/daniilgrydin/bojan.git
 Author: Daniil Grydin
 Author-email: 
 License: MIT
