@@ -75,44 +75,44 @@ class BojanConsole:
     def debug(self, message, depth=0):
         if(type(message) != str):
             message = str(message)
-        self.print(bcolors.GREY + message + bcolors.END, "💬", depth=depth)
+        self.print(color_codes.GREY + message + color_codes.END, "💬", depth=depth)
     
     def error(self, message, depth=0):
         if(type(message) != str):
             message = str(message)
-        self.print(bcolors.RED + message + bcolors.END, "❌", depth=depth)
+        self.print(color_codes.RED + message + color_codes.END, "❌", depth=depth)
         
     def success(self, message, depth=0):
         if(type(message) != str):
             message = str(message)
-        self.print(bcolors.GREEN + message + bcolors.END, "✅", depth=depth)
+        self.print(color_codes.GREEN + message + color_codes.END, "✅", depth=depth)
 
     def warning(self, message, depth=0):
         if(type(message) != str):
             message = str(message)
-        self.print(bcolors.YELLOW + message + bcolors.END, "⚠️", depth=depth)
+        self.print(color_codes.YELLOW + message + color_codes.END, "⚠️", depth=depth)
 
     def dictionary(self, d, depth=0):
         depth_emoji = ["🏰", "🛖", "🌲", "🐦", "🐛", "🧬"]
         for key, value in d.items():
             if isinstance(value, dict):
-                self.print(f"{bcolors.ITALIC}{bcolors.WHITE if depth == 0 else ''}{key}{bcolors.END}:", depth_emoji[depth], depth)
+                self.print(f"{color_codes.ITALIC}{color_codes.WHITE if depth == 0 else ''}{key}{color_codes.END}:", depth_emoji[depth], depth)
                 self.dictionary(value, depth + 1)
             else:
                 self.print(f"{key}: {value}", depth_emoji[depth], depth)
     
     def print_parameter(self, section, parameters, icon="🔧"):
-        self.log_plain(f"{icon} {bcolors.BOLD}{bcolors.YELLOW}{section}{bcolors.END}:")
+        self.log_plain(f"{icon} {color_codes.BOLD}{color_codes.YELLOW}{section}{color_codes.END}:")
         for key, value in parameters.items():
-            self.log_plain(f"\t{bcolors.BLUE}{key}{bcolors.END} : {bcolors.BLUE}{value}{bcolors.END}")
+            self.log_plain(f"\t{color_codes.BLUE}{key}{color_codes.END} : {color_codes.BLUE}{value}{color_codes.END}")
 
     def print_parameters(self, mappings, settings):
-        self.log_plain(f"STARTING 🌱 {bcolors.BOLD}{bcolors.GREEN}VELES{bcolors.END}🌱 WITH FOLLOWING PARAMETERS:")
+        self.log_plain(f"STARTING 🌱 {color_codes.BOLD}{color_codes.GREEN}VELES{color_codes.END}🌱 WITH FOLLOWING PARAMETERS:")
         self.print_parameter("Settings", settings, "⚙️")
         self.print_parameter("Mappings", mappings, "🗺️")
     
     def strip_colors(self, string):
-        return string.replace(bcolors.END, "").replace(bcolors.BOLD, "").replace(bcolors.ITALIC, "").replace(bcolors.URL, "").replace(bcolors.BLINK, "").replace(bcolors.BLINK2, "").replace(bcolors.SELECTED, "").replace(bcolors.BLACK, "").replace(bcolors.RED, "").replace(bcolors.GREEN, "").replace(bcolors.YELLOW, "").replace(bcolors.BLUE, "").replace(bcolors.VIOLET, "").replace(bcolors.BEIGE, "").replace(bcolors.WHITE, "").replace(bcolors.BLACKBG, "").replace(bcolors.REDBG, "").replace(bcolors.GREENBG, "").replace(bcolors.YELLOWBG, "").replace(bcolors.BLUEBG, "").replace(bcolors.VIOLETBG, "").replace(bcolors.BEIGEBG, "").replace(bcolors.WHITEBG, "").replace(bcolors.GREY, "").replace(bcolors.RED2, "").replace(bcolors.GREEN2, "").replace(bcolors.YELLOW2, "").replace(bcolors.BLUE2, "").replace(bcolors.VIOLET2, "").replace(bcolors.BEIGE2, "").replace(bcolors.WHITE2, "").replace(bcolors.GREYBG, "").replace(bcolors.REDBG2, "").replace(bcolors.GREENBG2, "").replace(bcolors.YELLOWBG2, "").replace(bcolors.BLUEBG2, "").replace(bcolors.VIOLETBG2, "").replace(bcolors.BEIGEBG2, "").replace(bcolors.WHITEBG2, "")
+        return string.replace(color_codes.END, "").replace(color_codes.BOLD, "").replace(color_codes.ITALIC, "").replace(color_codes.URL, "").replace(color_codes.BLINK, "").replace(color_codes.BLINK2, "").replace(color_codes.SELECTED, "").replace(color_codes.BLACK, "").replace(color_codes.RED, "").replace(color_codes.GREEN, "").replace(color_codes.YELLOW, "").replace(color_codes.BLUE, "").replace(color_codes.VIOLET, "").replace(color_codes.BEIGE, "").replace(color_codes.WHITE, "").replace(color_codes.BLACKBG, "").replace(color_codes.REDBG, "").replace(color_codes.GREENBG, "").replace(color_codes.YELLOWBG, "").replace(color_codes.BLUEBG, "").replace(color_codes.VIOLETBG, "").replace(color_codes.BEIGEBG, "").replace(color_codes.WHITEBG, "").replace(color_codes.GREY, "").replace(color_codes.RED2, "").replace(color_codes.GREEN2, "").replace(color_codes.YELLOW2, "").replace(color_codes.BLUE2, "").replace(color_codes.VIOLET2, "").replace(color_codes.BEIGE2, "").replace(color_codes.WHITE2, "").replace(color_codes.GREYBG, "").replace(color_codes.REDBG2, "").replace(color_codes.GREENBG2, "").replace(color_codes.YELLOWBG2, "").replace(color_codes.BLUEBG2, "").replace(color_codes.VIOLETBG2, "").replace(color_codes.BEIGEBG2, "").replace(color_codes.WHITEBG2, "")
     
     def save(self, filename):
         if "/" in filename or "\\" in filename:
@@ -136,7 +136,7 @@ class ProgressBar:
 
 # thanks to @qubodup for creating the list!
 # source: https://stackoverflow.com/a/39452138
-class bcolors:
+class color_codes:
     END      = '\33[0m'
     BOLD     = '\33[1m'
     ITALIC   = '\33[3m'
