@@ -1,13 +1,21 @@
 from setuptools import setup, find_packages
 
+#? To save and upload build:
+    #* 1. delete contents of dist/
+    #* 2. python setup.py bdist_wheel sdist
+        # this will create build/ and dist/ folders
+    #* 3. twine check dist/*
+        # this will check if the package is ready to be uploaded
+    #* 4. twine upload dist/*
+        # this will upload the package to PyPi
+
 with open('app/Readme.md', 'r') as f:
     l_desc = f.read()
 
-    print (l_desc)
-
     setup(
         name='bojan',
-        version='0.0.4',
+        ### release . feature . bugfix
+        version='0.0.12',
         description='A simple logging library',
         author='Daniil Grydin',
         package_dir={'': 'app'},
