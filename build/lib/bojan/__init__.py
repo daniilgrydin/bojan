@@ -1,1 +1,0 @@
-from .src.bojan import BojanConsole

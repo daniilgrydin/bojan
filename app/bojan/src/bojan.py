@@ -1,10 +1,34 @@
 import os
 import datetime
+import inspect
+import threading
+
+THROBBER = ["⠦", "⠇", "⠋", "⠙", "⠸", "⠴"]
 
 class BojanConsole:
-    def __init__(self, printing=True) -> None:
+    def __init__(self, printing=True, progress_bar=True) -> None:
         self.log = ""
+        # self.progress_bar = ProgressBar()
         self.printing = printing
+        self.throbber_index = 0
+        self.throbbing = True
+        self.log_throbber()
+        self.thread = threading.Timer(0.1, self.log_throbber)
+        if self.throbbing:
+            self.thread.start()
+        
+    def update_throbber(self):
+        self.throbber_index += 1
+        if self.throbber_index >= len(THROBBER):
+            self.throbber_index = 0
+        return THROBBER[self.throbber_index]
+
+    def log_throbber(self):
+        print(self.update_throbber(), end="\r")
+        # Call this function every 0.1 seconds
+        if not self.throbbing:
+            self.thread.cancel()
+        print(" ", end="\r")
 
     def log_plain(self, message):
         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -12,13 +36,34 @@ class BojanConsole:
         if "⚠️" in message:
             prefix = "WARN"
         if "❌" in message:
-            prefix = "EROR"
+            prefix = "ERROR"
         if "💬" in message:
-            prefix = "DBUG"
+            prefix = "DEBUG"
         if "✅" in message:
-            prefix = "RSLT"
+            self.throbbing = False
+            prefix = "DONE"
+
+        # Get caller information
+        caller_frame = inspect.stack()[2]
+        caller_file = caller_frame.filename
+        caller_line = caller_frame.lineno
+        caller_method = caller_frame.function
+        caller_class = caller_frame.frame.f_locals.get('self', None).__class__.__name__ if 'self' in caller_frame.frame.f_locals else None
+        
+        caller_file = caller_file.split("/")[-1]
+        caller_file = caller_file.split("\\")[-1]
+        
+        caller_tree = ""
+        if caller_file:
+            caller_tree += f"{caller_file}"
+        if caller_line:
+            caller_tree += f":{caller_line}"
+        if caller_class:
+            caller_tree += f" > {caller_class}"
+        if caller_method:
+            caller_tree += f" > {caller_method}"
     
-        self.log += f"{date} [{prefix}]\t{message}\n"
+        self.log += f"{message} [{date}] ({caller_tree})\n"
         if self.printing:
             print(message)
         
