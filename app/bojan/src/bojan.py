@@ -134,6 +134,8 @@ class ProgressBar:
         progress = int(self.progress/self.total*self.length)
         print(f"[{'#'*progress}{'-'*(self.length-progress)}] {progress/self.length*100:.2f}%", end="\r")
 
+# thanks to @qubodup for creating the list!
+# source: https://stackoverflow.com/a/39452138
 class bcolors:
     END      = '\33[0m'
     BOLD     = '\33[1m'
