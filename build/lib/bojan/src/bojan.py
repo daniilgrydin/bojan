@@ -23,7 +23,7 @@ class BojanConsole:
             print(message)
         
     def print(self, message, identifier="🕸️", depth=0):
-        message = f"{"\t"*depth}{identifier} {message}"
+        message = f"{'\t'*depth}{identifier} {message}"
         self.log_plain(message)
 
     def debug(self, message, depth=0):

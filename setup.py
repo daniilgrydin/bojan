@@ -7,7 +7,7 @@ with open('app/Readme.md', 'r') as f:
 
     setup(
         name='bojan',
-        version='0.0.3',
+        version='0.0.4',
         description='A simple logging library',
         author='Daniil Grydin',
         package_dir={'': 'app'},

@@ -7,7 +7,7 @@ BojanConsole is a Python library designed to enhance console logging with variou
 To install BojanConsole, simply clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/bojan.git
+git clone https://github.com/daniilgrydin/bojan.git
 ```
 
 ## Usage
