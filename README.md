@@ -25,7 +25,7 @@ from bojan import BojanConsole
 
 console = BojanConsole(printing=True)
 ```
-> Note that printing decides whether the 
+> Note that `printing` decides whether the instance will print to terminal or just store logs for later use. 
 
 #### Logging Messages
 
