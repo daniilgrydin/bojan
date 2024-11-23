@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
     #* 4. twine upload dist/*
         # this will upload the package to PyPi
 
-with open('app/Readme.md', 'r') as f:
+with open('README.md', 'r') as f:
     l_desc = f.read()
 
     setup(

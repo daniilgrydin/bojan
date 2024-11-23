@@ -4,11 +4,15 @@ BojanConsole is a Python library designed to enhance console logging with variou
 
 ## Installation
 
-To install BojanConsole, simply clone the repository:
+To install Bojan simply run
 
 ```bash
-git clone https://github.com/daniilgrydin/bojan.git
+pip install bojan
 ```
+
+## Syntax Highlight
+
+A [VS Code extension](https://github.com/daniilgrydin/bojan-vscode-highlighter) is available to highlight the .bojan and .bjn log files.
 
 ## Usage
 
@@ -62,21 +66,12 @@ console.dictionary(sample_dict)
 console.save("logfile.txt")
 ```
 
-### ProgressBar Class
-
 #### Initialization
 
 ```python
 from bojan import ProgressBar
 
 progress_bar = ProgressBar(total=100)
-```
-
-#### Updating and Printing Progress
-
-```python
-progress_bar.update(50)
-progress_bar.print()
 ```
 
 ## License
