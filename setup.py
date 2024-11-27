@@ -9,13 +9,13 @@ from setuptools import setup, find_packages
     #* 4. twine upload dist/*
         # this will upload the package to PyPi
 
-with open('README.md', 'r') as f:
+with open('README.md', 'r', encoding="UTF-8") as f:
     l_desc = f.read()
 
     setup(
         name='bojan',
         ### release . feature . bugfix
-        version='0.0.12',
+        version='0.0.13',
         description='A simple logging library',
         author='Daniil Grydin',
         package_dir={'': 'app'},
