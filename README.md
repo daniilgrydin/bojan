@@ -87,7 +87,25 @@ output:
     🛖 subkey1
         🌲 subvalue 1
 ```
-> The emojis follows following hierarchy: 🏰 🛖 🌲 🐦 🐛 🧬
+> The emojis use following hierarchy: 🏰 🛖 🌲 🐦 🐛 🧬
+
+#### Depth
+
+The depth parameter of all logging functions determines how nested the message is by inserting a corresponding amount of tabs.
+
+```python
+console.print("Message!", depth=0)
+console.print("Nested message!", depth=1)
+console.error("Nested error message!", depth=1)
+```
+
+output:
+
+```
+🕸️ Message!
+    🕸️ Nested message!
+    ❌ Nested error message!
+```
 
 #### Saving Logs
 
