@@ -42,7 +42,7 @@ class BojanConsole:
         # add time to the log
         if self.log_time:
             date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self.log += f" [{date}]\n"
+            self.log += " [" + date + "]"
 
         # add caller information to the log
         if self.cite_sources:
@@ -58,15 +58,15 @@ class BojanConsole:
             
             caller_tree = ""
             if caller_file:
-                caller_tree += f"{caller_file}"
+                caller_tree += caller_file
             if caller_line:
-                caller_tree += f":{caller_line}"
+                caller_tree += ":" + caller_line
             if caller_class:
-                caller_tree += f" > {caller_class}"
+                caller_tree += " > " + caller_class
             if caller_method:
-                caller_tree += f" > {caller_method}"
+                caller_tree += " > " + caller_method
         
-            self.log += f" [{caller_tree}]"
+            self.log += " [" + caller_tree + "]"
             
         # add a newline to the log
         self.log += "\n"
@@ -76,7 +76,7 @@ class BojanConsole:
         Print a message to the console with a given identifier and depth of nesting
         '''
         padding = "\t" * depth
-        message = f"{padding}{identifier} {message}"
+        message = padding + identifier + " " + message
         self.__log_plain(message)
 
     def debug(self, message, depth=0):
@@ -109,18 +109,23 @@ class BojanConsole:
         
         for key, value in d.items():
             if isinstance(value, dict):
-                self.print(f"{color_codes.ITALIC}{color_codes.WHITE if depth == 0 else ''}{key}{color_codes.END}:", depth_emoji[depth], depth)
+                self.print(
+                    color_codes.ITALIC + color_codes.WHITE if depth == 0 else '' + key + color_codes.END + ":", depth_emoji[depth], depth)
                 self.dictionary(value, depth + 1)
+            elif isinstance(value, list):
+                self.print(color_codes.ITALIC + (color_codes.WHITE if depth == 0 else '') + key + color_codes.END + ":", depth_emoji[depth], depth)
+                for i, item in enumerate(value):
+                    self.dictionary({i: item}, depth + 1)
             else:
-                self.print(f"{key}: {value}", depth_emoji[depth], depth)
+                self.print(key + ": " + value, depth_emoji[depth], depth)
     
     # def print_parameter(self, section, parameters, icon="🔧"):
-    #     self.log_plain(f"{icon} {color_codes.BOLD}{color_codes.YELLOW}{section}{color_codes.END}:")
+    #     self.log_plain(icon + " " + color_codes.BOLD + color_codes.YELLOW + section + color_codes.END + ":")
     #     for key, value in parameters.items():
-    #         self.log_plain(f"\t{color_codes.BLUE}{key}{color_codes.END} : {color_codes.BLUE}{value}{color_codes.END}")
+    #         self.log_plain("\t" + color_codes.BLUE + key + color_codes.END + " : " + color_codes.BLUE + value + color_codes.END)
 
     # def print_parameters(self, mappings, settings):
-    #     self.log_plain(f"STARTING 🌱 {color_codes.BOLD}{color_codes.GREEN}VELES{color_codes.END}🌱 WITH FOLLOWING PARAMETERS:")
+    #     self.log_plain("STARTING 🌱 " + color_codes.BOLD + color_codes.GREEN + "VELES" + color_codes.END + "🌱 WITH FOLLOWING PARAMETERS:")
     #     self.print_parameter("Settings", settings, "⚙️")
     #     self.print_parameter("Mappings", mappings, "🗺️")
     
@@ -145,7 +150,7 @@ class BojanConsole:
     
 #     def print(self):
 #         progress = int(self.progress/self.total*self.length)
-#         print(f"[{'#'*progress}{'-'*(self.length-progress)}] {progress/self.length*100:.2f}%", end="\r")
+#         print("[" + '#' * progress + '-' * (self.length - progress) + "] " + str(progress/self.length*100) + "%", end="\r")
 
 # thanks to @qubodup for creating the list!
 # permalink: https://stackoverflow.com/a/39452138

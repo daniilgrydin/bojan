@@ -15,7 +15,7 @@ with open('README.md', 'r', encoding="UTF-8") as f:
     setup(
         name='bojan',
         ### release . feature . bugfix
-        version='0.0.13',
+        version='0.0.17',
         description='A simple logging library',
         author='Daniil Grydin',
         package_dir={'': 'app'},
